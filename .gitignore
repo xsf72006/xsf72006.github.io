@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.astro/
+.DS_Store
+
+# local-only: private notes and tooling, never published
+docs/
+scripts/
+.vscode/

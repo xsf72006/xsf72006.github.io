@@ -1,0 +1,8 @@
+title: haskell-sudoku
+description: Sudoku in Haskell, compiled to the browser
+url: https://shaofeng.page/haskell-sudoku/
+repo: https://github.com/xsf72006/haskell-sudoku
+year: 2016
+stack: Haskell→JS
+status: archived
+order: 4

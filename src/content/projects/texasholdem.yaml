@@ -1,0 +1,8 @@
+title: texasholdem
+description: Chip ledger for a home Texas hold'em game — tracks buy-ins and cash-outs, then settles the table in the fewest payments
+url: https://shaofeng.page/texasholdem/
+repo: https://github.com/xsf72006/texasholdem
+year: 2026
+stack: TypeScript
+status: live
+order: 2

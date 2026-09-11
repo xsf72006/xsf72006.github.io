@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import WritingList from '../../components/WritingList.astro';
+import { getWriting } from '../../lib/content';
+
+const entries = await getWriting();
+---
+
+<BaseLayout
+  title="Writing · shaofeng.page"
+  description="Technical writing."
+  section="writing"
+>
+  <main id="main" class="page wrap">
+    <h1 class="page-title">Writing</h1>
+    <WritingList entries={entries} />
+  </main>
+</BaseLayout>

@@ -1,0 +1,46 @@
+---
+import BaseLayout from './BaseLayout.astro';
+// The reading register lives in site.css; essay.css is loaded so a post that
+// reaches for the photo-essay classes (.day-body, .aside, .plate, .sheet) gets
+// margin figures. A plain article is a serif column and nothing more.
+import '../styles/essay.css';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'writing'>;
+}
+
+const { entry } = Astro.props;
+const { title, date, description, lang, tags } = entry.data;
+
+const isZh = lang === 'zh-Hant';
+const stamp = date.toISOString().slice(0, 10).replace(/-/g, '.');
+const eyebrow = [stamp, ...tags].join(' · ');
+---
+
+<BaseLayout
+  title={`${title} · shaofeng.page`}
+  description={description}
+  lang={lang}
+  section="writing"
+  ogType="article"
+>
+  <div class="essay">
+    <header class="mast wrap">
+      <div class="eyebrow">{eyebrow}</div>
+      <h1>{isZh ? <span class="zh">{title}</span> : title}</h1>
+      <p class:list={['stand', isZh && 'zh', 'measure']}>{description}</p>
+    </header>
+
+    <main id="main" class="wrap">
+      <div class:list={['prose', isZh && 'zh']}>
+        <slot />
+      </div>
+    </main>
+  </div>
+</BaseLayout>
+
+<style>
+  .mast h1 { margin-bottom: var(--space-8); }
+  main { padding-top: var(--space-16); }
+</style>

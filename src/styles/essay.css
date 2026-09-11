@@ -1,0 +1,245 @@
+/* Photo-essay pattern — design system v1.6.
+   Ported 1:1 from the generated trip report (page.css lines 228–335); the
+   @font-face and token blocks are deliberately NOT copied, they come from
+   the vendored tokens.css. The base rules the report shared with every
+   page (body, img, .wrap, .measure, .zh, .eyebrow, .mono and the composed
+   font stacks) live in site.css.
+
+   The shape: a reading column at a fixed left edge plus a 220px margin
+   column for figures. Ratio decides placement and nothing else does —
+   plate >= 1.6, portrait < 0.9, standard between. One photo in the margin,
+   never a stack; plates full width and never cropped; runs of non-plate
+   photos become 2- or 3-column sheets, chronological, never reordered.
+   The masthead hero is the only cropped image on the page.
+   See decisions-v1.6-photo-essay-pattern.md.
+
+   Loaded by the travelogue and article layouts only, never globally, and
+   every rule is scoped to the `.essay` wrapper. The declarations are the
+   report's verbatim; the `.essay` prefix is the one change, and it is load
+   bearing twice over:
+
+   1. It keeps the report's bare `figcaption`, `h2`, `section` and `footer`
+      rules off the site chrome, which the standalone report never had.
+   2. It rescues those same rules from the cascade. tokens.css sets
+      `:lang(zh-Hant) { font-family: var(--font-zh) }`, so site.css has to
+      neutralise it per element with `:lang(zh-Hant) { font-family: inherit }`
+      — specificity (0,1,0), which silently beat the report's own
+      `figcaption { --stack-mono }` and `h2 { --stack-serif }` at (0,0,1).
+      In the generated report that meant captions left the mono utility
+      register and the day headings fell out of Newsreader while the mast
+      h1 stayed in it. Prefixed, they are (0,1,1) and win, which is what
+      the declarations plainly intended and what v1.6 specifies. This is
+      the gotcha the design system's own notes warn about: qualify the
+      selector so it wins. */
+
+.essay .mast {
+  /* padding-block: .mast also carries .wrap, and a `padding: x 0`
+     shorthand would zero the container gutter it is asking for. */
+  padding-block: var(--space-16) var(--space-8);
+  border-bottom: var(--border-width) solid var(--color-rule);
+}
+.essay .mast .eyebrow { margin-bottom: var(--space-6); }
+.essay .mast h1 {
+  font-family: var(--stack-serif);
+  font-weight: var(--weight-medium);
+  font-size: var(--text-article-headline);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  margin: 0 0 var(--space-4);
+}
+.essay .mast h1 .zh {
+  font-weight: var(--weight-regular);
+  letter-spacing: var(--tracking-normal);
+  line-height: 1.1;
+}
+.essay .mast .sub {
+  font-family: var(--stack-serif);
+  font-size: var(--text-article-sub);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-snug);
+  color: var(--color-ink-soft);
+  margin: 0 0 var(--space-8);
+}
+.essay .mast .sub .zh { font-weight: var(--weight-light); }
+.essay .stand {
+  font-family: var(--stack-serif);
+  font-size: var(--text-reading);
+  line-height: var(--leading-reading);
+}
+.essay .stand.zh { line-height: var(--leading-loose); }
+
+/* The only cropped image on the page. */
+.essay .hero { margin: var(--space-8) 0 0; }
+.essay .hero img {
+  width: 100%;
+  aspect-ratio: 2.2/1;
+  object-fit: cover;
+  object-position: 50% 62%;
+  border-top: var(--border-width) solid var(--color-rule-soft);
+  border-bottom: var(--border-width) solid var(--color-rule-soft);
+}
+.essay .hero figcaption { padding-block: var(--space-2) 0; }
+
+.essay figcaption {
+  font-family: var(--stack-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-ink-soft);
+  line-height: var(--leading-snug);
+}
+.essay figcaption .zh {
+  font-weight: var(--weight-regular);
+  letter-spacing: var(--tracking-wide);
+}
+
+.essay section { padding: var(--space-16) 0 0; }
+.essay section > .eyebrow { margin-bottom: var(--space-4); }
+
+.essay h2 {
+  font-family: var(--stack-serif);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  margin: 0 0 var(--space-6);
+}
+.essay h2 .zh {
+  font-weight: var(--weight-regular);
+  letter-spacing: var(--tracking-normal);
+  line-height: 1.15;
+}
+
+.essay table {
+  width: 100%;
+  border-collapse: collapse;
+  border-top: var(--border-width) solid var(--color-rule);
+  font-size: var(--text-sm);
+}
+.essay th, .essay td {
+  text-align: left;
+  vertical-align: top;
+  padding: var(--space-2) var(--space-3) var(--space-2) 0;
+  border-bottom: var(--border-width) solid var(--color-rule-soft);
+  line-height: var(--leading-loose);
+}
+.essay th {
+  font-family: var(--stack-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-ink-soft);
+  text-transform: uppercase;
+}
+.essay td.num, .essay th.num {
+  text-align: right;
+  font-family: var(--stack-mono);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.essay tr.total td {
+  border-bottom: var(--border-width) solid var(--color-rule);
+  font-weight: var(--weight-medium);
+}
+
+.essay .day {
+  border-top: var(--border-width) solid var(--color-rule);
+  padding-top: var(--space-6);
+}
+.essay .day-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-6);
+  margin-bottom: var(--space-8);
+}
+.essay .day-head .eyebrow { color: var(--color-ink); }
+.essay .day-head h2 { margin: 0; flex: 1 1 auto; }
+.essay .kicker {
+  font-family: var(--stack-serif);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-snug);
+  margin: calc(-1 * var(--space-4)) 0 var(--space-8);
+  max-width: var(--measure-reading);
+}
+.essay .day-head .stats {
+  font-family: var(--stack-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-ink-soft);
+  white-space: nowrap;
+}
+
+/* The editorial grid: reading column + margin column. Figures sit beside
+   (or directly after) the paragraph that mentions them. No JS, no cropping. */
+.essay .day-body {
+  display: grid;
+  grid-template-columns: minmax(0, var(--measure-reading)) minmax(220px, 1fr);
+  column-gap: var(--space-8);
+  row-gap: var(--space-6);
+  align-items: start;
+}
+.essay p.refl {
+  grid-column: 1;
+  margin: 0;
+  max-width: var(--measure-reading);
+  font-family: var(--stack-serif);
+  font-size: var(--text-reading);
+  line-height: var(--leading-loose);
+  font-weight: var(--weight-light);
+  letter-spacing: var(--tracking-wide);
+}
+.essay .aside { grid-column: 2; align-self: start; }
+.essay .plate, .essay .sheet { grid-column: 1 / -1; }
+.essay .sheet { display: grid; gap: var(--space-4); align-items: start; }
+.essay .sheet.cols2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.essay .sheet.cols3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.essay .day-body figure { margin: 0; }
+.essay .day-body figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: var(--border-width) solid var(--color-rule-soft);
+}
+.essay .day-body figcaption { padding-top: var(--space-2); }
+.essay .day-body figcaption .t { display: block; margin-bottom: 2px; }
+
+.essay footer {
+  margin-top: var(--space-24);
+  padding-block: var(--space-6) var(--space-16);
+  border-top: var(--border-width) solid var(--color-rule);
+}
+.essay footer p {
+  font-family: var(--stack-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-ink-soft);
+  line-height: var(--leading-normal);
+  margin: 0 0 var(--space-2);
+}
+.essay footer p .zh {
+  font-weight: var(--weight-regular);
+  letter-spacing: var(--tracking-wide);
+}
+
+@media (max-width: 760px) {
+.essay .mast { padding-top: var(--space-12); }
+.essay .day-body { grid-template-columns: minmax(0, 1fr); }
+.essay .aside { grid-column: 1; }
+.essay .sheet.cols3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.essay .day-head .stats { white-space: normal; }
+}
+
+@page { size: A4; margin: 16mm 14mm; }
+@media print {
+:root { --color-paper: #fff; --color-paper-elevated: #fff; }
+html { font-size: 11px; }
+.site-head, .site-foot { display: none; }
+.essay .mast { padding-top: 0; }
+.essay section { padding-top: var(--space-8); }
+.essay .day { break-before: page; }
+.essay .day-body figure, .essay tr { break-inside: avoid; }
+.essay .plate img { max-height: 120mm; width: auto; max-width: 100%; }
+.essay .hero img { max-height: 110mm; object-fit: cover; }
+.essay footer { margin-top: var(--space-8); }
+}

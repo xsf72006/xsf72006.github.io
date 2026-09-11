@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="About · shaofeng.page"
+  description="A software engineer in Hong Kong. Small tools, travel notes and the occasional technical article."
+  section="about"
+>
+  <main id="main" class="page wrap">
+    <h1 class="page-title">About</h1>
+    <p class="bio">
+      Shaofeng — a software engineer in Hong Kong. This site collects small tools,
+      travel notes and the occasional technical article.
+    </p>
+    <p class="contact">
+      <a class="mail" href="#" data-u="hi" data-d="shaofeng.page" aria-label="email">hi&nbsp;(at)&nbsp;shaofeng&nbsp;(dot)&nbsp;page</a>
+    </p>
+  </main>
+  <script is:inline>
+    // The address is assembled here, not in the HTML, so naive scrapers
+    // that read the static page do not harvest it.
+    for (const a of document.querySelectorAll('a.mail')) {
+      const addr = a.dataset.u + '@' + a.dataset.d;
+      a.href = 'mailto:' + addr;
+      a.textContent = addr;
+    }
+  </script>
+</BaseLayout>

@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TravelList from '../../components/TravelList.astro';
+import { getTravel } from '../../lib/content';
+
+const entries = await getTravel();
+---
+
+<BaseLayout
+  title="Travel · shaofeng.page"
+  description="Travelogues, written after the fact."
+  section="travel"
+>
+  <main id="main" class="page wrap">
+    <h1 class="page-title">Travel</h1>
+    <TravelList entries={entries} />
+  </main>
+</BaseLayout>

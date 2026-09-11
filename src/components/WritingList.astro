@@ -1,0 +1,33 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { stamp } from '../lib/content';
+
+interface Props {
+  entries: CollectionEntry<'writing'>[];
+}
+
+const { entries } = Astro.props;
+---
+
+{
+  entries.length === 0 ? (
+    <p class="empty">Nothing here yet</p>
+  ) : (
+    <ul class="list">
+      {entries.map(({ id, data }) => {
+        const isZh = data.lang === 'zh-Hant';
+        return (
+          <li lang={data.lang}>
+            <div class="item-eyebrow">{[stamp(data.date), ...data.tags].join(' · ')}</div>
+            <h3 class="item-title">
+              <a href={`/writing/${id}/`}>
+                {isZh ? <span class="zh">{data.title}</span> : data.title}
+              </a>
+            </h3>
+            <p class:list={['item-desc', isZh && 'zh']}>{data.description}</p>
+          </li>
+        );
+      })}
+    </ul>
+  )
+}

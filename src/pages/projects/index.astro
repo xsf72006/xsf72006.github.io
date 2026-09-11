@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectList from '../../components/ProjectList.astro';
+import { getProjects } from '../../lib/content';
+
+const entries = await getProjects();
+---
+
+<BaseLayout
+  title="Projects · shaofeng.page"
+  description="Small tools, each in its own repo."
+  section="projects"
+>
+  <main id="main" class="page wrap">
+    <h1 class="page-title">Projects</h1>
+    <ProjectList entries={entries} />
+  </main>
+</BaseLayout>

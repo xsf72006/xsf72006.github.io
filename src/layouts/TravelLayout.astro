@@ -1,0 +1,52 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import '../styles/essay.css';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'travel'>;
+}
+
+const { entry } = Astro.props;
+const { title, subtitle, dates, description, lang, hero, region, route, colophon } =
+  entry.data;
+
+const isZh = lang === 'zh-Hant';
+const eyebrow = ['Travelogue', dates, region].join(' · ');
+const footerLine = [dates, ...(route.length ? route : [region])].join(' · ');
+---
+
+<BaseLayout
+  title={`${title} · shaofeng.page`}
+  description={description}
+  lang={lang}
+  section="travel"
+  ogImage={hero.src}
+  ogType="article"
+>
+  <div class="essay">
+  <header class="mast wrap">
+    <div class="eyebrow">{eyebrow}</div>
+    <h1>{isZh ? <span class="zh">{title}</span> : title}</h1>
+    <p class="sub">{isZh ? <span class="zh">{subtitle}</span> : subtitle}</p>
+    <p class:list={['stand', isZh && 'zh', 'measure']}>{description}</p>
+  </header>
+
+  <figure class="hero">
+    <img src={hero.src} width={hero.width} height={hero.height} alt={hero.alt} />
+    <figcaption class="wrap">
+      {isZh ? <span class="zh">{hero.place}</span> : hero.place} ·{' '}
+      {isZh ? <span class="zh">{hero.caption}</span> : hero.caption}
+    </figcaption>
+  </figure>
+
+  <main id="main" class="wrap">
+    <slot />
+  </main>
+
+  <footer class="wrap">
+    <p>{footerLine}</p>
+    {colophon && <p>{isZh ? <span class="zh">{colophon}</span> : colophon}</p>}
+  </footer>
+  </div>
+</BaseLayout>

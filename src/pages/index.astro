@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TravelList from '../components/TravelList.astro';
+import WritingList from '../components/WritingList.astro';
+import ProjectList from '../components/ProjectList.astro';
+import { getTravel, getWriting, getProjects } from '../lib/content';
+
+const travel = await getTravel();
+const writing = await getWriting();
+const projects = await getProjects();
+---
+
+<BaseLayout
+  title="shaofeng.page"
+  description="Travelogues, technical writing and small tools."
+>
+  <main id="main" class="page wrap">
+    <section class="strip">
+      <div class="strip-head">
+        <h2 class="eyebrow">Travel</h2>
+        <a class="eyebrow" href="/travel/">All</a>
+      </div>
+      <TravelList entries={travel} />
+    </section>
+
+    <section class="strip">
+      <div class="strip-head">
+        <h2 class="eyebrow">Writing</h2>
+        <a class="eyebrow" href="/writing/">All</a>
+      </div>
+      <WritingList entries={writing} />
+    </section>
+
+    <section class="strip">
+      <div class="strip-head">
+        <h2 class="eyebrow">Projects</h2>
+        <a class="eyebrow" href="/projects/">All</a>
+      </div>
+      <ProjectList entries={projects} />
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  /* The home page is a set of lists, not an article — no section padding. */
+  .strip { padding: 0; }
+  .strip-head a { text-decoration: none; }
+  .strip-head a:hover,
+  .strip-head a:focus-visible { color: var(--color-accent); }
+</style>

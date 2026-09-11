@@ -1,0 +1,87 @@
+---
+import '../styles/site.css';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Document language. Defaults to English; travelogues pass 'zh-Hant'. */
+  lang?: string;
+  /** Nav section to mark current: 'travel' | 'writing' | 'projects' | 'about'. */
+  section?: string;
+  /** Root-relative path of a hero image, turned into an absolute og:image. */
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+}
+
+const {
+  title,
+  description,
+  lang = 'en',
+  section,
+  ogImage,
+  ogType = 'website',
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImageUrl = ogImage ? new URL(ogImage, Astro.site).href : undefined;
+
+const nav = [
+  { href: '/travel/', label: 'Travel', key: 'travel' },
+  { href: '/writing/', label: 'Writing', key: 'writing' },
+  { href: '/projects/', label: 'Projects', key: 'projects' },
+  { href: '/about/', label: 'About', key: 'about' },
+];
+---
+
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical.href} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical.href} />
+    {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
+
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="shaofeng.page"
+      href={new URL('/rss.xml', Astro.site).href}
+    />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <!-- Vendored design system. tokens.css @imports ./fonts.css, which
+         resolves against this path and in turn points at ./fonts/*.woff2. -->
+    <link rel="stylesheet" href="/design-system/tokens.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-head wrap">
+      <a class="wordmark" href="/">shaofeng.page</a>
+      <nav class="site-nav" aria-label="Sections">
+        {
+          nav.map((item) => (
+            <a href={item.href} aria-current={section === item.key ? 'page' : undefined}>
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+    </header>
+
+    <slot />
+
+    <footer class="site-foot wrap">
+      <p>© 2026 shaofeng.page · Views are my own.</p>
+      <p><a href="/rss.xml">RSS</a></p>
+    </footer>
+  </body>
+</html>

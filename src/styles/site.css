@@ -1,0 +1,332 @@
+/* shaofeng.page — site rules.
+   Every value here is a var(--token) from the vendored design system
+   (public/design-system/tokens.css, v1.6). Nothing is hard-coded: no
+   colours, no sizes, no spacing. Rust appears only as an interaction or
+   state signal; corners are square; depth is a hairline, never a shadow. */
+
+/* ── Composed font stacks (mixed script) ─────────────────────────────
+   The tokens ship one family per script. These compose them so that in a
+   single run of text the EN glyphs fall to the Latin face and the 中文
+   glyphs to Noto — ordering is what does the work. */
+:root {
+  --stack-sans: 'Hanken Grotesk', 'Noto Sans HK', 'PingFang HK', system-ui, sans-serif;
+  --stack-serif: 'Newsreader', 'Noto Serif TC', 'Songti TC', Georgia, serif;
+  --stack-mono: 'JetBrains Mono', 'Noto Sans HK', 'PingFang HK', ui-monospace, monospace;
+}
+
+html { font-family: var(--stack-sans); }
+body { background: var(--color-paper); color: var(--color-ink); }
+img { display: block; max-width: 100%; height: auto; }
+
+/* tokens.css sets :lang(zh-Hant) to --font-zh, which would put a whole
+   zh-Hant page — Latin included — in Noto Sans HK. Neutralise it so the
+   composed stacks decide the family; .zh then only carries the pairing
+   rules (one weight lighter, +tracking, ~25% more leading). */
+:lang(zh-Hant) { font-family: inherit; }
+html:lang(zh-Hant) { font-family: var(--stack-sans); }
+.zh {
+  font-weight: var(--weight-light);
+  letter-spacing: var(--tracking-wide);
+  line-height: var(--leading-loose);
+}
+strong { font-weight: var(--weight-medium); }
+
+.wrap {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+.measure { max-width: var(--measure-reading); }
+
+.eyebrow {
+  font-family: var(--stack-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+.mono { font-family: var(--stack-mono); font-variant-numeric: tabular-nums; }
+
+/* ── Links ───────────────────────────────────────────────────────────
+   Rust is an interaction signal only, so no link carries it at rest.
+   Prose links are underlined in ink for affordance and turn rust on
+   hover/focus; structural links (chrome, list titles) are undecorated
+   until touched. */
+a {
+  color: var(--color-ink);
+  text-decoration-color: currentColor;
+  text-underline-offset: 3px;
+  transition: color var(--duration-fast) var(--ease-out),
+              text-decoration-color var(--duration-fast) var(--ease-out);
+}
+a:hover,
+a:focus-visible { color: var(--color-accent); text-decoration-color: currentColor; }
+
+a:focus-visible {
+  outline: var(--border-width-bold) solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--color-paper-elevated);
+  border: var(--border-width) solid var(--color-rule-soft);
+  padding: var(--space-2) var(--space-4);
+  font-family: var(--stack-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  text-decoration: none;
+  z-index: 10;
+}
+.skip-link:focus { left: var(--container-padding); top: var(--space-2); }
+
+/* ── Header ──────────────────────────────────────────────────────────
+   Wordmark left, sections right in the mono eyebrow register. The
+   current section carries a 2px rust underline — the only rust at rest
+   anywhere on the site. */
+.site-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4) var(--space-8);
+  /* padding-block, never the shorthand: these elements also carry .wrap,
+     whose horizontal --container-padding a `padding: x 0` would zero out,
+     leaving the content flush against the screen edge on a phone. */
+  padding-block: var(--space-6);
+}
+
+.wordmark {
+  font-family: var(--stack-sans);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-tighter);
+  text-decoration: none;
+  color: var(--color-ink);
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-6);
+}
+.site-nav a {
+  font-family: var(--stack-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+  text-decoration: none;
+  padding-bottom: var(--space-1);
+  border-bottom: var(--border-width-bold) solid transparent;
+}
+.site-nav a:hover,
+.site-nav a:focus-visible { color: var(--color-accent); }
+.site-nav a[aria-current] {
+  color: var(--color-ink);
+  border-bottom-color: var(--color-accent);
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────
+   Higher specificity than essay.css's bare `footer`, so the essay rules
+   do not reach the site chrome on a travelogue page. */
+.site-foot {
+  margin-top: var(--space-24);
+  padding-block: 0 var(--space-16);
+}
+/* The rule sits inside the gutter so it aligns with the content edge,
+   like every other rule on the page. */
+.site-foot::before {
+  content: '';
+  display: block;
+  border-top: var(--border-width) solid var(--color-rule);
+  margin-bottom: var(--space-6);
+}
+.site-foot p {
+  font-family: var(--stack-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-ink-soft);
+  line-height: var(--leading-normal);
+  margin: 0 0 var(--space-2);
+}
+.site-foot a { color: inherit; text-decoration: underline; }
+.site-foot a:hover,
+.site-foot a:focus-visible { color: var(--color-accent); }
+
+/* ── Page furniture ──────────────────────────────────────────────────*/
+.page { padding-block: var(--space-12) 0; }
+.page-title {
+  font-family: var(--stack-serif);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  margin: 0 0 var(--space-8);
+}
+
+/* ── Hairline-separated lists (home, indexes) ────────────────────────*/
+.strip + .strip { margin-top: var(--space-16); }
+.strip-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.list {
+  list-style: none;
+  border-top: var(--border-width) solid var(--color-rule);
+}
+.list > li {
+  padding: var(--space-6) 0;
+  border-bottom: var(--border-width) solid var(--color-rule-soft);
+}
+
+.item-eyebrow {
+  font-family: var(--stack-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+  margin-bottom: var(--space-2);
+}
+.item-title {
+  font-family: var(--stack-serif);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  margin: 0 0 var(--space-2);
+}
+.item-title .zh {
+  font-weight: var(--weight-regular);
+  letter-spacing: var(--tracking-normal);
+}
+.item-title a { text-decoration: none; }
+.item-desc {
+  max-width: var(--measure-reading);
+  line-height: var(--leading-normal);
+  color: var(--color-ink-soft);
+  margin: 0;
+}
+.item-desc.zh { line-height: var(--leading-loose); }
+.item-meta {
+  font-family: var(--stack-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-ink-soft);
+  line-height: var(--leading-snug);
+  margin: var(--space-3) 0 0;
+}
+.item-meta a { color: inherit; text-decoration: underline; }
+.item-meta a:hover,
+.item-meta a:focus-visible { color: var(--color-accent); }
+
+/* An honest empty state, not a placeholder post. */
+.empty {
+  font-family: var(--stack-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+  border-top: var(--border-width) solid var(--color-rule);
+  padding: var(--space-6) 0;
+  margin: 0;
+}
+
+/* ── About ───────────────────────────────────────────────────────────*/
+.bio {
+  font-family: var(--stack-serif);
+  font-size: var(--text-reading);
+  line-height: var(--leading-reading);
+  max-width: var(--measure-reading);
+  margin: 0 0 var(--space-8);
+}
+.contact { margin: 0; }
+.contact a { text-decoration: underline; }
+
+/* ── 404 ─────────────────────────────────────────────────────────────*/
+.notfound {
+  font-family: var(--stack-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+  padding-block: var(--space-24);
+}
+.notfound p { margin: 0 0 var(--space-4); }
+.notfound a { color: var(--color-ink); text-decoration: underline; }
+.notfound a:hover,
+.notfound a:focus-visible { color: var(--color-accent); }
+
+/* ── Reading register for /writing/<slug>/ ───────────────────────────
+   A plain serif column at one fixed left edge. Margin figures are not
+   on by default — a post gets them by using the photo-essay classes
+   from essay.css (.day-body, .aside, .plate, .sheet). */
+.prose { max-width: var(--measure-reading); }
+.prose p {
+  font-family: var(--stack-serif);
+  font-size: var(--text-reading);
+  line-height: var(--leading-reading);
+  margin: 0 0 var(--space-6);
+}
+.prose.zh p,
+.prose p.zh {
+  font-weight: var(--weight-light);
+  letter-spacing: var(--tracking-wide);
+  line-height: var(--leading-loose);
+}
+.prose h2 {
+  font-family: var(--stack-serif);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  margin: var(--space-12) 0 var(--space-4);
+}
+.prose h3 {
+  font-family: var(--stack-sans);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  margin: var(--space-8) 0 var(--space-3);
+}
+.prose ul,
+.prose ol { margin: 0 0 var(--space-6) var(--space-6); }
+.prose li {
+  font-family: var(--stack-serif);
+  font-size: var(--text-reading);
+  line-height: var(--leading-reading);
+  margin-bottom: var(--space-2);
+}
+.prose a { text-decoration: underline; }
+.prose blockquote {
+  border-left: var(--border-width-bold) solid var(--color-rule-soft);
+  padding-left: var(--space-4);
+  margin: 0 0 var(--space-6);
+  color: var(--color-ink-soft);
+}
+.prose code {
+  font-family: var(--stack-mono);
+  font-size: var(--text-sm);
+  background: var(--color-code-bg);
+  padding: 0 var(--space-1);
+}
+.prose pre {
+  background: var(--color-code-bg);
+  border: var(--border-width) solid var(--color-rule-soft);
+  padding: var(--space-4);
+  overflow-x: auto;
+  margin: 0 0 var(--space-6);
+}
+.prose pre code { background: none; padding: 0; }
+
+@media (max-width: 760px) {
+  .site-head { padding-block: var(--space-4); }
+  .page { padding-top: var(--space-8); }
+}

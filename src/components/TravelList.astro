@@ -1,0 +1,28 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entries: CollectionEntry<'travel'>[];
+}
+
+const { entries } = Astro.props;
+---
+
+<ul class="list">
+  {
+    entries.map(({ id, data }) => {
+      const isZh = data.lang === 'zh-Hant';
+      return (
+        <li lang={data.lang}>
+          <div class="item-eyebrow">{data.dates} · {data.region}</div>
+          <h3 class="item-title">
+            <a href={`/travel/${id}/`}>
+              {isZh ? <span class="zh">{data.title}</span> : data.title}
+            </a>
+          </h3>
+          <p class:list={['item-desc', isZh && 'zh']}>{data.description}</p>
+        </li>
+      );
+    })
+  }
+</ul>
