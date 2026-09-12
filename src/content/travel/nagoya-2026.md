@@ -3,7 +3,7 @@ title: 從名古屋出發
 subtitle: 犬山・伊勢・琵琶湖・敦賀・福井　自駕八日
 dates: 2026.08.29 — 09.05
 date: 2026-09-05
-description: 七晚八天，一輛租來的車。名古屋是起點，也是終點；中間是一座城的高處、兩片海的潮、一條湖的水，和福井的一場雨。
+description: 七晚八天，一輛租來的車。名古屋是起點，也是終點。
 lang: zh-Hant
 region: Central Japan
 route:
@@ -29,7 +29,7 @@ hero:
     <h2><span class="zh">入夜抵達中部國際機場</span></h2>
   </div>
   <p class="kicker"><span class="zh">沒有風景的夜晚</span></p>
-  <div class="day-body"><p class="refl">傍晚起飛，落地時名古屋已入夜。中部國際機場築在伊勢灣的人工島上，入境後走幾步路便是酒店。這一晚什麼也沒看，只是為明天預留：八天的路，從這裡鋪出去。</p></div>
+  <div class="day-body"><p class="refl">傍晚起飛，落地時名古屋已入夜。中部國際機場築在伊勢灣的人工島上，入境後走幾步路便是酒店。這一晚什麼也沒看，只是先到了，八天的路明天才開始。</p></div>
 </section>
 <section class="day" id="day2">
   <div class="day-head">
@@ -47,7 +47,7 @@ hero:
     <div class="stats">開車 約 260 km</div>
   </div>
   <p class="kicker"><span class="zh">兩種潮</span></p>
-  <div class="day-body"><p class="refl">沿伊勢灣岸高速南下三重，車程兩個多小時。伊勢神宮供奉皇祖神天照大御神，被視為神道信仰的精神巔峰與最核心的聖地。星期一仍是人潮，且多為日本人；人這麼多，參道上卻一路安靜，不似旅遊景點，更像是一場日常的朝聖。午間在おかげ横丁（托福橫丁）的手こね茶屋（手捏茶屋）吃松阪牛牛丼。</p><div class="aside"><figure><img src="/travel/nagoya-2026/img_8706.jpg" width="1400" height="1050" alt="松阪牛牛丼定食，配伊勢烏冬" loading="lazy"><figcaption><span class="t"><span class="zh">手こね茶屋（手捏茶屋）・おかげ横丁（托福橫丁）</span></span><span class="zh">松阪牛牛丼定食，配伊勢烏冬</span></figcaption></figure></div><p class="refl">傍晚驅車至二見浦。夫婦岩並肩立在海裡，注連繩連著大小兩岩，在晚風裡微微起伏；海水清澈，水天一色。白日的人潮，到這裡換成了另一種潮，安靜得多。</p><figure class="plate"><img src="/travel/nagoya-2026/img_8708.jpg" width="1400" height="788" alt="夫婦岩" loading="lazy"><figcaption><span class="t"><span class="zh">二見興玉神社</span></span><span class="zh">夫婦岩</span></figcaption></figure><p class="refl">夜裡回到名古屋，在納屋橋的世界の山ちゃん（世界的山將）吃名物手羽先。</p></div>
+  <div class="day-body"><p class="refl">沿伊勢灣岸高速南下三重，車程兩個多小時。伊勢神宮供奉皇祖神天照大御神，是神道信仰的最高聖地。星期一仍是人潮，且多為日本人；人這麼多，參道上卻一路安靜，像日常的參拜多於觀光。午間在おかげ横丁（托福橫丁）的手こね茶屋（手捏茶屋）吃松阪牛牛丼。</p><div class="aside"><figure><img src="/travel/nagoya-2026/img_8706.jpg" width="1400" height="1050" alt="松阪牛牛丼定食，配伊勢烏冬" loading="lazy"><figcaption><span class="t"><span class="zh">手こね茶屋（手捏茶屋）・おかげ横丁（托福橫丁）</span></span><span class="zh">松阪牛牛丼定食，配伊勢烏冬</span></figcaption></figure></div><p class="refl">傍晚驅車至二見浦。夫婦岩並肩立在海裡，注連繩連著大小兩岩，在晚風裡微微起伏；海水清澈，水天一色。白日的人潮，到這裡換成了另一種潮，安靜得多。</p><figure class="plate"><img src="/travel/nagoya-2026/img_8708.jpg" width="1400" height="788" alt="夫婦岩" loading="lazy"><figcaption><span class="t"><span class="zh">二見興玉神社</span></span><span class="zh">夫婦岩</span></figcaption></figure><p class="refl">夜裡回到名古屋，在納屋橋的世界の山ちゃん（世界的山將）吃名物手羽先。</p></div>
 </section>
 <section class="day" id="day4">
   <div class="day-head">
@@ -64,7 +64,7 @@ hero:
     <div class="stats">開車 約 260 km</div>
   </div>
   <p class="kicker"><span class="zh">一路都是水</span></p>
-  <div class="day-body"><p class="refl">走新名神往滋賀，在土山服務區停了一停：向來喜歡包子，見到松阪牛包子，自然要試一個。佐川美術館蓋在水上，長廊、水庭、雕塑，彼此都只是對方的背景；天陰，水面反而靜得像一塊未磨的鏡子。離開時仍想著那片水，車已上了琵琶湖大橋。沿西岸北行，白鬚神社的鳥居就立在湖裡，遠山淡得幾乎要化開。過了縣境是敦賀，氣比松原的海換了一種清澈，看得見底，沙灘是細碎的石沙。</p><figure class="plate"><img src="/travel/nagoya-2026/img_8789.jpg" width="1400" height="788" alt="水庭與長廊，建築本身就是展品" loading="lazy"><figcaption><span class="t"><span class="zh">佐川美術館</span></span><span class="zh">水庭與長廊，建築本身就是展品</span></figcaption></figure><div class="sheet cols2"><figure><img src="/travel/nagoya-2026/img_8794.jpg" width="1400" height="1400" alt="水庭中的雕塑，陰天反而更好看" loading="lazy"><figcaption><span class="t"><span class="zh">佐川美術館</span></span><span class="zh">水庭中的雕塑，陰天反而更好看</span></figcaption></figure><figure><img src="/travel/nagoya-2026/img_8813.jpg" width="1050" height="1400" alt="水面上的佐藤忠良雕塑" loading="lazy"><figcaption><span class="t"><span class="zh">佐川美術館</span></span><span class="zh">水面上的佐藤忠良雕塑</span></figcaption></figure></div><figure class="plate"><img src="/travel/nagoya-2026/img_8824.jpg" width="1400" height="788" alt="湖中鳥居" loading="lazy"><figcaption><span class="t"><span class="zh">白鬚神社</span></span><span class="zh">湖中鳥居</span></figcaption></figure><div class="sheet cols2"><figure><img src="/travel/nagoya-2026/img_8843.jpg" width="1400" height="1050" alt="松原望向敦賀港" loading="lazy"><figcaption><span class="t"><span class="zh">氣比松原・敦賀</span></span><span class="zh">松原望向敦賀港</span></figcaption></figure></div><p class="refl">入夜抵福井，在車站旁的福福茶屋吃鄉土料理：ソースカツ丼（醬汁炸豬扒飯）與越前おろしそば（越前蘿蔔泥蕎麥麵），一鹹一清。</p><div class="aside"><figure><img src="/travel/nagoya-2026/img_8857.jpg" width="1400" height="1050" alt="越前おろしそば（越前蘿蔔泥蕎麥麵）與ソースカツ丼（醬汁炸豬扒飯），福井兩大名物一次吃齊" loading="lazy"><figcaption><span class="t"><span class="zh">福福茶屋・福井</span></span><span class="zh">越前おろしそば（越前蘿蔔泥蕎麥麵）與ソースカツ丼（醬汁炸豬扒飯），福井兩大名物一次吃齊</span></figcaption></figure></div></div>
+  <div class="day-body"><p class="refl">走新名神往滋賀，在土山服務區停了一停：向來喜歡包子，見到松阪牛包子，自然要試一個。佐川美術館蓋在水上，長廊、水庭、雕塑，彼此都只是對方的背景；天陰，水面反而靜得像一塊未磨的鏡子。離開時仍想著那片水，車已上了琵琶湖大橋。沿西岸北行，白鬚神社的鳥居就立在湖裡，遠山淡得幾乎要化開。過了縣境是敦賀，氣比松原的海是另一種清澈，看得見底，沙灘是細碎的石沙。</p><figure class="plate"><img src="/travel/nagoya-2026/img_8789.jpg" width="1400" height="788" alt="水庭與長廊，建築本身就是展品" loading="lazy"><figcaption><span class="t"><span class="zh">佐川美術館</span></span><span class="zh">水庭與長廊，建築本身就是展品</span></figcaption></figure><div class="sheet cols2"><figure><img src="/travel/nagoya-2026/img_8794.jpg" width="1400" height="1400" alt="水庭中的雕塑，陰天反而更好看" loading="lazy"><figcaption><span class="t"><span class="zh">佐川美術館</span></span><span class="zh">水庭中的雕塑，陰天反而更好看</span></figcaption></figure><figure><img src="/travel/nagoya-2026/img_8813.jpg" width="1050" height="1400" alt="水面上的佐藤忠良雕塑" loading="lazy"><figcaption><span class="t"><span class="zh">佐川美術館</span></span><span class="zh">水面上的佐藤忠良雕塑</span></figcaption></figure></div><figure class="plate"><img src="/travel/nagoya-2026/img_8824.jpg" width="1400" height="788" alt="湖中鳥居" loading="lazy"><figcaption><span class="t"><span class="zh">白鬚神社</span></span><span class="zh">湖中鳥居</span></figcaption></figure><div class="sheet cols2"><figure><img src="/travel/nagoya-2026/img_8843.jpg" width="1400" height="1050" alt="松原望向敦賀港" loading="lazy"><figcaption><span class="t"><span class="zh">氣比松原・敦賀</span></span><span class="zh">松原望向敦賀港</span></figcaption></figure></div><p class="refl">入夜抵福井，在車站旁的福福茶屋吃鄉土料理：ソースカツ丼（醬汁炸豬扒飯）與越前おろしそば（越前蘿蔔泥蕎麥麵），一鹹一清。</p><div class="aside"><figure><img src="/travel/nagoya-2026/img_8857.jpg" width="1400" height="1050" alt="越前おろしそば（越前蘿蔔泥蕎麥麵）與ソースカツ丼（醬汁炸豬扒飯），福井兩大名物一次吃齊" loading="lazy"><figcaption><span class="t"><span class="zh">福福茶屋・福井</span></span><span class="zh">越前おろしそば（越前蘿蔔泥蕎麥麵）與ソースカツ丼（醬汁炸豬扒飯），福井兩大名物一次吃齊</span></figcaption></figure></div></div>
 </section>
 <section class="day" id="day6">
   <div class="day-head">
@@ -82,7 +82,7 @@ hero:
     <div class="stats">開車 約 230 km</div>
   </div>
   <p class="kicker"><span class="zh">最後的路</span></p>
-  <div class="day-body"><p class="refl">趕路的一天。從福井直下常滑，在イオンモール常滑（AEON MALL 常滑）購買免稅品，傍晚回機場還車。</p><p class="refl">回機場的高速上有驚險一瞬：打燈、看倒後鏡確認無車後開始切線，切到一半，一輛 Alphard 忽然從後方竄上，險些擦到。倒後鏡有盲點，租來的車又不熟，切線前回頭看一眼，一次都不能省。</p><p class="refl">晚上住回機場旁的酒店，大堂裡滿是來自日本和各國的小學生，似乎是來參加運動會的。與六天前那個安靜的夜晚，是同一個地方。</p></div>
+  <div class="day-body"><p class="refl">趕路的一天。從福井直下常滑，在イオンモール常滑（AEON MALL 常滑）購買免稅品，傍晚回機場還車。</p><p class="refl">回機場的高速上差點出事：打燈、看倒後鏡確認無車後開始切線，切到一半，一輛 Alphard 忽然從後方竄上，險些擦到。後來想，倒後鏡的盲點加上不熟的車，切線前還是該回頭看一眼。</p><p class="refl">晚上住回機場旁的酒店，大堂裡滿是來自日本和各國的小學生，似乎是來參加運動會的。六天前那個安靜的夜晚，也是這裡。</p></div>
 </section>
 <section class="day" id="day8">
   <div class="day-head">
