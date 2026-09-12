@@ -29,7 +29,7 @@ const year = new Date().getFullYear();
       travel.length > 0 && (
         <section class="strip">
           <div class="strip-head">
-            <h2 class="eyebrow">Travel</h2>
+            <h2 class="strip-title">Travel</h2>
             <a class="eyebrow" href="/travel/">All</a>
           </div>
           <LeadTravel entry={travel[0]} />
@@ -42,7 +42,7 @@ const year = new Date().getFullYear();
       writing.length > 0 && (
         <section class="strip">
           <div class="strip-head">
-            <h2 class="eyebrow">Writing</h2>
+            <h2 class="strip-title">Writing</h2>
             <a class="eyebrow" href="/writing/">All</a>
           </div>
           <WritingList entries={writing} />
@@ -54,7 +54,7 @@ const year = new Date().getFullYear();
       projects.length > 0 && (
         <section class="strip">
           <div class="strip-head">
-            <h2 class="eyebrow">Projects</h2>
+            <h2 class="strip-title">Projects</h2>
             <a class="eyebrow" href="/projects/">All</a>
           </div>
           <ProjectList entries={projects} />

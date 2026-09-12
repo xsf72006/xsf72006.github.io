@@ -98,6 +98,15 @@ a:focus-visible {
      leaving the content flush against the screen edge on a phone. */
   padding-block: var(--space-6);
 }
+/* A hairline under the chrome separates it from the page, so the nav
+   reads as furniture rather than as the first line of content. */
+.site-head::after {
+  content: '';
+  display: block;
+  flex-basis: 100%;
+  border-top: var(--border-width) solid var(--color-rule);
+  margin-top: var(--space-4);
+}
 
 .wordmark {
   font-family: var(--stack-sans);
@@ -115,11 +124,11 @@ a:focus-visible {
 }
 .site-nav a {
   font-family: var(--stack-mono);
-  font-size: var(--text-xs);
+  font-size: var(--text-sm);
   font-weight: var(--weight-medium);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  color: var(--color-ink-soft);
+  color: var(--color-ink);
   text-decoration: none;
   padding-bottom: var(--space-1);
   border-bottom: var(--border-width-bold) solid transparent;
@@ -188,6 +197,17 @@ a:focus-visible {
 
 /* ── Hairline-separated lists (home, indexes) ────────────────────────*/
 .strip + .strip { margin-top: var(--space-24); }
+/* Section heads sit one register above what they label: serif, not the
+   mono eyebrow the dates and metadata use, so they read as headings
+   rather than as more metadata. */
+.strip-title {
+  font-family: var(--stack-serif);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-tight);
+  margin: 0;
+}
 .strip-head {
   display: flex;
   align-items: baseline;
