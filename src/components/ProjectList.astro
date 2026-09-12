@@ -8,16 +8,20 @@ interface Props {
 const { entries } = Astro.props;
 ---
 
-<ul class="list">
+<ul class="proj">
   {
     entries.map(({ data }) => (
       <li>
-        <h3 class="item-title"><a href={data.url}>{data.title}</a></h3>
-        <p class="item-desc">{data.description}</p>
-        <p class="item-meta">
-          {data.year} · {data.stack} · {data.status} ·{' '}
-          <a href={data.repo}>source</a>
-        </p>
+        <h3 class="proj-title"><a href={data.url}>{data.title}</a></h3>
+        <p class="proj-desc">{data.description}</p>
+        <div class="proj-meta">
+          <span>{data.year} · {data.stack}</span>
+          <span>
+            {/* 'live' is the unremarkable case, so only 'archived' is stated. */}
+            {data.status === 'live' ? '' : `${data.status} · `}
+            <a href={data.repo}>source</a>
+          </span>
+        </div>
       </li>
     ))
   }

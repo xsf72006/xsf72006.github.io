@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import LeadTravel from '../components/LeadTravel.astro';
 import TravelList from '../components/TravelList.astro';
 import WritingList from '../components/WritingList.astro';
 import ProjectList from '../components/ProjectList.astro';
@@ -8,6 +9,8 @@ import { getTravel, getWriting, getProjects } from '../lib/content';
 const travel = await getTravel();
 const writing = await getWriting();
 const projects = await getProjects();
+
+const year = new Date().getFullYear();
 ---
 
 <BaseLayout
@@ -15,29 +18,49 @@ const projects = await getProjects();
   description="Travelogues, technical writing and small tools."
 >
   <main id="main" class="page wrap">
-    <section class="strip">
-      <div class="strip-head">
-        <h2 class="eyebrow">Travel</h2>
-        <a class="eyebrow" href="/travel/">All</a>
-      </div>
-      <TravelList entries={travel} />
-    </section>
+    <div class="masthead">
+      <h1 class="masthead-line">
+        Travel notes, small tools, and the occasional technical article.
+      </h1>
+      <p class="eyebrow">Hong Kong · {year}</p>
+    </div>
 
-    <section class="strip">
-      <div class="strip-head">
-        <h2 class="eyebrow">Writing</h2>
-        <a class="eyebrow" href="/writing/">All</a>
-      </div>
-      <WritingList entries={writing} />
-    </section>
+    {
+      travel.length > 0 && (
+        <section class="strip">
+          <div class="strip-head">
+            <h2 class="eyebrow">Travel</h2>
+            <a class="eyebrow" href="/travel/">All</a>
+          </div>
+          <LeadTravel entry={travel[0]} />
+          {travel.length > 1 && <TravelList entries={travel.slice(1)} />}
+        </section>
+      )
+    }
 
-    <section class="strip">
-      <div class="strip-head">
-        <h2 class="eyebrow">Projects</h2>
-        <a class="eyebrow" href="/projects/">All</a>
-      </div>
-      <ProjectList entries={projects} />
-    </section>
+    {
+      writing.length > 0 && (
+        <section class="strip">
+          <div class="strip-head">
+            <h2 class="eyebrow">Writing</h2>
+            <a class="eyebrow" href="/writing/">All</a>
+          </div>
+          <WritingList entries={writing} />
+        </section>
+      )
+    }
+
+    {
+      projects.length > 0 && (
+        <section class="strip">
+          <div class="strip-head">
+            <h2 class="eyebrow">Projects</h2>
+            <a class="eyebrow" href="/projects/">All</a>
+          </div>
+          <ProjectList entries={projects} />
+        </section>
+      )
+    }
   </main>
 </BaseLayout>
 

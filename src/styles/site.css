@@ -169,8 +169,25 @@ a:focus-visible {
   margin: 0 0 var(--space-8);
 }
 
+/* ── Masthead ────────────────────────────────────────────────────────
+   The home page states what it is in one serif line and then drops a
+   dateline under it in the mono eyebrow register — the same pairing the
+   essay mast uses, one register down. It is the page's h1; the strips
+   below are h2. Generous air beneath so the first strip reads as a new
+   movement rather than a continuation of the sentence. */
+.masthead { margin-bottom: var(--space-16); }
+.masthead-line {
+  font-family: var(--stack-serif);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  max-width: var(--measure-reading);
+  margin: 0 0 var(--space-4);
+}
+
 /* ── Hairline-separated lists (home, indexes) ────────────────────────*/
-.strip + .strip { margin-top: var(--space-16); }
+.strip + .strip { margin-top: var(--space-24); }
 .strip-head {
   display: flex;
   align-items: baseline;
@@ -227,6 +244,109 @@ a:focus-visible {
 .item-meta a { color: inherit; text-decoration: underline; }
 .item-meta a:hover,
 .item-meta a:focus-visible { color: var(--color-accent); }
+
+/* ── Lead travel entry ───────────────────────────────────────────────
+   The newest travelogue gets its photograph on the home page; the rest
+   stay text in the list below it. Same row anatomy as a list item —
+   opening rule, --space-6 block padding, closing hairline — so the lead
+   reads as the first row of the strip and not as a card. */
+.lead {
+  border-top: var(--border-width) solid var(--color-rule);
+  border-bottom: var(--border-width) solid var(--color-rule-soft);
+  padding-block: var(--space-6);
+}
+/* The lead already closed with a hairline, so a list following it must
+   not stack its own opening rule on top of that one. */
+.lead + .list { border-top: 0; }
+
+/* Full column width, square, no border: the frame is the column edge. */
+.lead-figure {
+  display: block;
+  text-decoration: none;
+  margin-bottom: var(--space-6);
+}
+.lead-figure img { width: 100%; }
+
+/* A step above .item-title — the lead is the one headline in the strip. */
+.lead-title {
+  font-family: var(--stack-serif);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  margin: 0 0 var(--space-2);
+}
+.lead-title .zh {
+  font-weight: var(--weight-regular);
+  letter-spacing: var(--tracking-normal);
+}
+.lead-title a { text-decoration: none; }
+
+/* ── Project table ───────────────────────────────────────────────────
+   Projects are facts, not essays, so they get a table: name, what it is,
+   then year / stack / source hard against the right edge in the mono
+   register. Rows are denser than the editorial strips (--space-4, not
+   --space-6) because each one is a line of a ledger. */
+.proj {
+  list-style: none;
+  border-top: var(--border-width) solid var(--color-rule);
+}
+.proj > li {
+  display: grid;
+  /* The name column floors at --measure-margin, the system's one other
+     column-floor token, which is wide enough to hold the longest project
+     name on one line; minmax(0, …) on the prose column so a long unbroken
+     word cannot push the row past the container and start the page
+     scrolling sideways. */
+  grid-template-columns:
+    minmax(var(--measure-margin), 1fr) minmax(0, 2fr) auto;
+  align-items: baseline;
+  column-gap: var(--space-6);
+  padding-block: var(--space-4);
+  border-bottom: var(--border-width) solid var(--color-rule-soft);
+}
+.proj-title {
+  font-family: var(--stack-serif);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  margin: 0;
+}
+.proj-title a { text-decoration: none; }
+.proj-desc {
+  font-family: var(--stack-sans);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--color-ink-soft);
+  margin: 0;
+}
+.proj-meta {
+  font-family: var(--stack-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-ink-soft);
+  line-height: var(--leading-snug);
+  text-align: right;
+}
+/* Two stacked lines, each unbroken: the facts, then the way in. */
+.proj-meta > span { display: block; white-space: nowrap; }
+.proj-meta a { color: inherit; text-decoration: underline; }
+.proj-meta a:hover,
+.proj-meta a:focus-visible { color: var(--color-accent); }
+
+/* Phone: the three columns become one, in source order — name, what it
+   is, then the facts — and the mono block gives up its right edge. The
+   query length is the one figure here that cannot be a token: a media
+   condition is resolved before custom properties exist. */
+@media (max-width: 48rem) {
+  .proj > li {
+    grid-template-columns: 1fr;
+    row-gap: var(--space-2);
+  }
+  .proj-meta { text-align: left; }
+}
 
 /* An honest empty state, not a placeholder post. */
 .empty {

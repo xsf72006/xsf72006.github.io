@@ -1,0 +1,32 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'travel'>;
+}
+
+const { entry } = Astro.props;
+const { id, data } = entry;
+
+/* Same .zh handling as TravelList: the lang attribute carries the script,
+   the .zh class carries the pairing rules. */
+const isZh = data.lang === 'zh-Hant';
+const href = `/travel/${id}/`;
+---
+
+<article class="lead" lang={data.lang}>
+  <a class="lead-figure" href={href}>
+    <img
+      src={data.hero.src}
+      width={data.hero.width}
+      height={data.hero.height}
+      alt={data.hero.alt}
+      loading="eager"
+    />
+  </a>
+  <div class="item-eyebrow">{data.dates} · {data.region}</div>
+  <h3 class="lead-title">
+    <a href={href}>{isZh ? <span class="zh">{data.title}</span> : data.title}</a>
+  </h3>
+  <p class:list={['item-desc', isZh && 'zh']}>{data.description}</p>
+</article>
